@@ -5,6 +5,12 @@
 !Makefile
 !README.md
 
+!srcs
+
+!includes
+
 !*.asm
+!*.h
+!*.c
 
 !playground
