@@ -1,20 +1,33 @@
-NAME 	= hello
-SRC 	= playground/hello.asm
-OBJ 	= playground/hello.o
+NAME 	= a.out
+
+ASM_SRC	= srcs/hello.asm
+
+OBJ 	= objs/hello.o
+
+LIB 	= lib/libasm.a
+
+C_SRC	= srcs/main.c
+
+INCL	= includes
 
 
 .PHONY : all
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	ld $^ -o $@
+$(NAME) : $(C_SRC) $(LIB)
+	gcc $(C_SRC) -I$(INCL) -Llib -lasm -o $@
 
-$(OBJ) : $(SRC)
+$(LIB): $(OBJ)
+	@mkdir -p $(dir $@)
+	ar rcs $@ $<
+
+$(OBJ) : $(ASM_SRC)
+	@mkdir -p $(dir $@)
 	nasm -f elf64 $^ -o $@
 
 .PHONY : clean
 clean :
-	rm -f $(OBJ)
+	rm -rf objs lib
 
 .PHONY : fclean
 fclean : clean
