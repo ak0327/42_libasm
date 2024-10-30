@@ -63,6 +63,20 @@ TEST(FtStrlen, LargeSize) {
 // }
 
 
+// TEST(FtStrlen, NullPtr) {
+// #pragma GCC diagnostic push
+// #pragma GCC diagnostic ignored "-Wnonnull"
+// #pragma GCC diagnostic ignored "-Wunused-variable"
+//     testing::FLAGS_gtest_death_test_style = "threadsafe";
+//
+//     char *null_ptr = NULL;
+//     EXPECT_DEATH({ (void)strlen(null_ptr); }, ".*");
+//     EXPECT_DEATH({ (void)ft_strlen(null_ptr); }, ".*");
+//
+// #pragma GCC diagnostic pop
+// }
+
+
 // TEST(FtStrlen, Unterminated) {
 // #pragma GCC diagnostic push
 // #pragma GCC diagnostic ignored "-Wnonnull"

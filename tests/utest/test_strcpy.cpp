@@ -50,3 +50,25 @@ INSTANTIATE_TEST_SUITE_P(
                 "123\0abc",
                 "longer_test_case")
 );
+
+
+// TEST(FtStrcpyTest, NullPtr) {
+// #pragma GCC diagnostic push
+// #pragma GCC diagnostic ignored "-Wnonnull"
+//     testing::FLAGS_gtest_death_test_style = "threadsafe";
+//
+//     char *null_ptr = NULL;
+//     char *null_ptr2 = NULL;
+//     EXPECT_DEATH({ (void)strcpy(null_ptr, null_ptr2); }, ".*");
+//     EXPECT_DEATH({ (void)ft_strcpy(null_ptr, null_ptr2); }, ".*");
+//
+//     EXPECT_DEATH({ (void)strcpy(null_ptr, "a"); }, ".*");
+//     EXPECT_DEATH({ (void)ft_strcpy(null_ptr, "a"); }, ".*");
+//
+//     char *dst = (char *)malloc(sizeof(char) * 10);
+//     EXPECT_DEATH({ (void)strcpy(dst, null_ptr); }, ".*");
+//     EXPECT_DEATH({ (void)ft_strcpy(dst, null_ptr); }, ".*");
+//     free(dst);
+//
+// #pragma GCC diagnostic pop
+// }
