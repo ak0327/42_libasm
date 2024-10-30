@@ -9,7 +9,7 @@
 
 !includes
 
-!*.asm
+!*.s
 !*.h
 !*.c
 

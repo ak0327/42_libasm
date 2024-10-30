@@ -1,8 +1,12 @@
 NAME 	= a.out
 
-ASM_SRC	= srcs/hello.asm
+SRCS_DIR	= srcs
+ASM_SRCS	= hello.s \
+		  	  ft_strlen.s
 
-OBJ 	= objs/hello.o
+OBJS_DIR	= objs
+OBJS		= $(ASM_SRCS:%.s=$(OBJS_DIR)/%.o)
+DEPS		= $(OBJS:%.o=%.d)
 
 LIB 	= lib/libasm.a
 
@@ -17,11 +21,11 @@ all : $(NAME)
 $(NAME) : $(C_SRC) $(LIB)
 	gcc $(C_SRC) -I$(INCL) -Llib -lasm -o $@
 
-$(LIB): $(OBJ)
+$(LIB): $(OBJS)
 	@mkdir -p $(dir $@)
-	ar rcs $@ $<
+	ar rcs $@ $^
 
-$(OBJ) : $(ASM_SRC)
+$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.s
 	@mkdir -p $(dir $@)
 	nasm -f elf64 $^ -o $@
 
@@ -43,6 +47,8 @@ run : all
 
 .PHONY : bonus
 bonus :
+
+-include $(DEPS)
 
 build:
 	docker build --platform=linux/amd64 -t ubuntu-x86 .
