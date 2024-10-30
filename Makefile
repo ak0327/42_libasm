@@ -56,7 +56,7 @@ utest	:
 
 .PHONY	: t
 t	:
-	docker exec -it $(CONTAINER_NAME) make utest
+	docker exec $(CONTAINER_NAME) make utest
 
 -include $(DEPS)
 
@@ -65,7 +65,7 @@ docker-run: docker-build docker-exec
 docker-build:
 	docker build --platform=linux/amd64 -t ubuntu-x86 .
 	docker run \
-		--detach --interactive --tty \
+		--detach --interactive \
 		--platform=linux/amd64 \
 		--volume $(shell pwd):/app \
 		--name $(CONTAINER_NAME) \
@@ -88,4 +88,4 @@ docker-fclean:
 	docker system prune -a
 
 docker-info:
-	docker exec -it $(CONTAINER_NAME) lscpu
+	docker exec $(CONTAINER_NAME) lscpu

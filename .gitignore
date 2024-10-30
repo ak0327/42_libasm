@@ -1,6 +1,11 @@
 *
 
 !.gitignore
+
+!.github
+!.github/workflows
+!.github/workflows/**.yml
+
 !Dockerfile
 !Makefile
 !CMakeLists.txt

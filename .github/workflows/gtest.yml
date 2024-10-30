@@ -1,0 +1,54 @@
+name: UNIT_TEST
+on: [push]
+jobs:
+  run-utest-on-linux:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install nasm
+        run: sudo apt-get update && sudo apt-get install -y nasm
+
+      - name: LS CPU
+        run: lscpu
+
+      - name: Compile
+        run: make
+
+      - name: Run unit test
+        run: make utest
+
+  run-utest-on-docker:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    env:
+      CONTAINER_NAME: libasm-dev
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Docker engine
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+          docker --version
+
+      - name: Build and Run Docker Container
+        run: |
+          docker build --platform=linux/amd64 -t ubuntu-x86 .
+          docker run \
+            --detach --interactive \
+            --platform=linux/amd64 \
+            --volume ${{ github.workspace }}:/app \
+            --name $CONTAINER_NAME \
+            ubuntu-x86 tail -f /dev/null
+
+      - name: LS CPU
+        run: make docker-info
+
+      - name: Compile
+        run: docker exec $CONTAINER_NAME make
+
+      - name: Run unit test
+        run: make t
