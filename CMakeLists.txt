@@ -34,6 +34,7 @@ include_directories(
 ## srcs ------------------------------------------------------------------------
 set (utest_srcs
         tests/utest/test_strlen.cpp
+        tests/utest/test_strcpy.cpp
 )
 
 

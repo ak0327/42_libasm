@@ -2,7 +2,8 @@ NAME 	= a.out
 
 SRCS_DIR	= srcs
 ASM_SRCS	= hello.s \
-		  	  ft_strlen.s
+		  	  ft_strlen.s \
+		  	  ft_strcpy.s
 
 OBJS_DIR	= objs
 OBJS		= $(ASM_SRCS:%.s=$(OBJS_DIR)/%.o)
