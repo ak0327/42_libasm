@@ -3,6 +3,7 @@
 !.gitignore
 !Dockerfile
 !Makefile
+!CMakeLists.txt
 !README.md
 
 !srcs
@@ -12,5 +13,10 @@
 !*.s
 !*.h
 !*.c
+
+!tests
+!tests/includes
+!tests/utest
+!tests/utest/**.cpp
 
 !playground

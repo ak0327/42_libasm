@@ -14,6 +14,7 @@ C_SRC	= srcs/main.c
 
 INCL	= includes
 
+CONTAINER_NAME := libasm-dev
 
 .PHONY : all
 all : $(NAME)
@@ -44,12 +45,47 @@ re : fclean all
 run : all
 	./$(NAME)
 
-
 .PHONY : bonus
 bonus :
 
+.PHONY	: utest
+utest	:
+	cmake -S . -B build
+	cmake --build build
+	./build/utest
+
+.PHONY	: t
+t	:
+	docker exec -it $(CONTAINER_NAME) make utest
+
 -include $(DEPS)
 
-build:
+docker-run: docker-build docker-exec
+
+docker-build:
 	docker build --platform=linux/amd64 -t ubuntu-x86 .
-	docker run --platform=linux/amd64 -it -v $(shell pwd):/app ubuntu-x86 bash
+	docker run \
+		--detach --interactive --tty \
+		--platform=linux/amd64 \
+		--volume $(shell pwd):/app \
+		--name $(CONTAINER_NAME) \
+		ubuntu-x86 tail -f /dev/null
+
+docker-exec:
+	docker exec -it $(CONTAINER_NAME) bash
+
+docker-stop:
+	@if [ "$$(docker ps -q -f name=$(CONTAINER_NAME))" ]; then \
+		docker stop $(CONTAINER_NAME); \
+	else \
+		echo "Container $(CONTAINER_NAME) is not running"; \
+	fi
+
+docker-clean: docker-stop
+	docker rm -f $(CONTAINER_NAME)
+
+docker-fclean:
+	docker system prune -a
+
+docker-info:
+	docker exec -it $(CONTAINER_NAME) lscpu
