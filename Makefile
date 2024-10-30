@@ -57,6 +57,7 @@ utest	:
 
 .PHONY	: t
 t	:
+	docker exec $(CONTAINER_NAME) make
 	docker exec $(CONTAINER_NAME) make utest
 
 -include $(DEPS)
