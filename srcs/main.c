@@ -9,8 +9,6 @@ void test_strlen(const char *s) {
 }
 
 int main(void) {
-    print_hello();
-
     test_strlen("hello");
     test_strlen("");
 
