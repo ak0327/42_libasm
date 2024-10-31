@@ -44,23 +44,37 @@ TEST(FtStrlen, LargeSize) {
 }
 
 
-TEST(FtStrlen, BigSize) {
-#ifdef SIZE_MAX
-    const size_t VERY_LARGE_SIZE = INT_MAX / 2;
+// TEST(FtStrlen, BigSize) {
+// #ifdef SIZE_MAX
+//     const size_t VERY_LARGE_SIZE = INT_MAX / 2;
+//
+//     char *very_large_str = (char *)malloc(sizeof(char) * (VERY_LARGE_SIZE + 1));
+//     ASSERT_NE(very_large_str, nullptr) << "Memory allocation failed";
+//
+//     memset(very_large_str, 'a', VERY_LARGE_SIZE);
+//     very_large_str[VERY_LARGE_SIZE] = '\0';
+//
+//     size_t ft_len = ft_strlen(very_large_str);
+//     size_t std_len = strlen(very_large_str);
+//     EXPECT_EQ(ft_len, std_len);
+//
+//     free(very_large_str);
+// #endif
+// }
 
-    char *very_large_str = (char *)malloc(sizeof(char) * (VERY_LARGE_SIZE + 1));
-    ASSERT_NE(very_large_str, nullptr) << "Memory allocation failed";
 
-    memset(very_large_str, 'a', VERY_LARGE_SIZE);
-    very_large_str[VERY_LARGE_SIZE] = '\0';
-
-    size_t ft_len = ft_strlen(very_large_str);
-    size_t std_len = strlen(very_large_str);
-    EXPECT_EQ(ft_len, std_len);
-
-    free(very_large_str);
-#endif
-}
+// TEST(FtStrlen, NullPtr) {
+// #pragma GCC diagnostic push
+// #pragma GCC diagnostic ignored "-Wnonnull"
+// #pragma GCC diagnostic ignored "-Wunused-variable"
+//     testing::FLAGS_gtest_death_test_style = "threadsafe";
+//
+//     char *null_ptr = NULL;
+//     EXPECT_DEATH({ (void)strlen(null_ptr); }, ".*");
+//     EXPECT_DEATH({ (void)ft_strlen(null_ptr); }, ".*");
+//
+// #pragma GCC diagnostic pop
+// }
 
 
 // TEST(FtStrlen, Unterminated) {

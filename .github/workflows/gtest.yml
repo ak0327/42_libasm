@@ -47,8 +47,5 @@ jobs:
       - name: LS CPU
         run: make docker-info
 
-      - name: Compile
-        run: docker exec $CONTAINER_NAME make
-
-      - name: Run unit test
+      - name: Compile and Run unit test
         run: make t

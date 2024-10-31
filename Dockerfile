@@ -6,12 +6,8 @@ RUN apt-get update && apt-get install -y \
     cmake \
     make \
     nasm
-#    libgtest-dev
 
-#RUN cd /usr/src/googletest && \
-#    cmake CMakeLists.txt && \
-#    make && \
-#    cp lib/*.a /usr/lib
+ENV MAKEFLAGS=--no-print-directory
 
 WORKDIR /app
 

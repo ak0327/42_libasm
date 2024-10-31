@@ -2,7 +2,12 @@ NAME 	= a.out
 
 SRCS_DIR	= srcs
 ASM_SRCS	= hello.s \
-		  	  ft_strlen.s
+		  	  ft_strlen.s \
+		  	  ft_strcpy.s \
+		  	  ft_strcmp.s \
+		  	  ft_write.s \
+		  	  ft_read.s \
+		  	  ft_strdup.s
 
 OBJS_DIR	= objs
 OBJS		= $(ASM_SRCS:%.s=$(OBJS_DIR)/%.o)
@@ -50,12 +55,18 @@ bonus :
 
 .PHONY	: utest
 utest	:
+#	cmake --build build --quiet --clean-first --target utest && ./build/utest
 	cmake -S . -B build
-	cmake --build build
+	cmake --build build --clean-first
 	./build/utest
+
+.PHONY	: u
+u	: re utest
+
 
 .PHONY	: t
 t	:
+	docker exec $(CONTAINER_NAME) make
 	docker exec $(CONTAINER_NAME) make utest
 
 -include $(DEPS)
