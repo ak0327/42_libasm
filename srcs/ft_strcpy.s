@@ -1,3 +1,4 @@
+; ft_strcpy.s
 global ft_strcpy
 section .text
 

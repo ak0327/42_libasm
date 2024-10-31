@@ -1,4 +1,4 @@
-; ft_write.s
+; ft_read.s
 %ifdef __APPLE__
     extern ___error
 %else
