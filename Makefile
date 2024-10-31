@@ -6,7 +6,8 @@ ASM_SRCS	= hello.s \
 		  	  ft_strcpy.s \
 		  	  ft_strcmp.s \
 		  	  ft_write.s \
-		  	  ft_read.s
+		  	  ft_read.s \
+		  	  ft_strdup.s
 
 OBJS_DIR	= objs
 OBJS		= $(ASM_SRCS:%.s=$(OBJS_DIR)/%.o)

@@ -38,6 +38,7 @@ set (utest_srcs
         tests/utest/test_strcmp.cpp
         tests/utest/test_write.cpp
         tests/utest/test_read.cpp
+        tests/utest/test_strdup.cpp
 )
 
 
