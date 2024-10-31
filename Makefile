@@ -4,7 +4,8 @@ SRCS_DIR	= srcs
 ASM_SRCS	= hello.s \
 		  	  ft_strlen.s \
 		  	  ft_strcpy.s \
-		  	  ft_strcmp.s
+		  	  ft_strcmp.s \
+		  	  ft_write.s
 
 OBJS_DIR	= objs
 OBJS		= $(ASM_SRCS:%.s=$(OBJS_DIR)/%.o)
@@ -52,9 +53,14 @@ bonus :
 
 .PHONY	: utest
 utest	:
+#	cmake --build build --quiet --clean-first --target utest && ./build/utest
 	cmake -S . -B build
-	cmake --build build
+	cmake --build build --clean-first
 	./build/utest
+
+.PHONY	: u
+u	: re utest
+
 
 .PHONY	: t
 t	:
