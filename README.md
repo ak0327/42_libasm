@@ -34,3 +34,5 @@ root         1  0.0  0.0 149292 12720 pts/0    Ssl  23:39   0:00 /usr/bin/qemu-x
 <br>
 
 ## 4. References
+- System V Application Binary Interface, Draft 0.99.6 – July 2, 2012 – 17:14
+- 矢沢久雄, プログラムはなぜ動くのか 第2版, 日経BP社
