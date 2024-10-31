@@ -37,6 +37,7 @@ set (utest_srcs
         tests/utest/test_strcpy.cpp
         tests/utest/test_strcmp.cpp
         tests/utest/test_write.cpp
+        tests/utest/test_read.cpp
 )
 
 
